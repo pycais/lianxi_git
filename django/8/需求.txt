@@ -1,0 +1,36 @@
+from django.http import HttpResponse, HttpResponseForbidden
+from django.utils.deprecation import MiddlewareMixin
+
+leaders = [
+    "101.68.87.26"
+]
+
+class MyMiddleware(MiddlewareMixin):
+
+    def process_request(self, req):
+        print(req.META["REMOTE_ADDR"])
+        print(req.path)
+        if req.META["REMOTE_ADDR"] in leaders:
+            if req.path == '/t07/register':
+                return HttpResponseForbidden("您不用亲自注册，请联系小刘")
+            return HttpResponse("哦哈有噶杂以马斯")
+        else:
+            return HttpResponse("哦哈呦")
+
+    def process_response(self, request, response):
+        print("process_response")
+        print(response.content.decode())
+        return response
+
+    def process_exception(self, req, exception):
+        print("有异常", exception)
+        # 1 要求之处理线上模式 DEBUG=False的情况
+        # 2 拿到这个请求的路径和exception信息 去数据库看看今天是不是出现过这样的异常
+        # 3 如果出现了 就不发送异常邮件
+        # 4 如果没出现过 那就异步发送一封错误邮件（给所有的开发者 send_mass_mail）
+        # 5 提高：在第四步 如果此bug在当天出现的累计次数已经超过N次 就要再发送一封邮件给哦所有的开发
+        # 全部使用原生的SQL语句完成
+
+        
+        # 做个判断 发个邮件
+        return HttpResponse("没啥毛病")

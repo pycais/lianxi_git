@@ -1,0 +1,5 @@
+sudo useradd -m 用户名
+sudo passwd 用户名
+
+然后切换到root用户   su root
+vim /etc/sudoers

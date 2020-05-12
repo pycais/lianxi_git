@@ -1,0 +1,14 @@
+1 user里有个字段叫is_active 创建的时候默认是True， 在create_user(is_active=False)
+2 使用uuid生成验证连接
+3 发送邮件
+4 将我们生成uuid当key user的id当value 存到缓存 cache.set(uuid的字符串， user.id, 60*60)
+
+
+生成的连接对应逻辑怎么写：
+	首先要拿到连接里的那个随机字符串
+	去缓存 通过拿到的key 去查查有没有数据 cache.get("sdjsklajdfkslafjkdsjkl")
+	如果没有结果 那就返回提示 链接已经失效
+	如果有
+		
+		去数据库搜索id对应的用户 修改它的is_active字段
+		返回成功
