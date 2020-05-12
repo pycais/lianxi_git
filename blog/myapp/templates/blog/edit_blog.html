@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+{% block MyCss %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='kindeditor-4.1.10/themes/default/default.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='blog/css/edit_blog.css') }}">
+{% endblock %}
+{% block content %}
+        <div class="container">
+            <div class="form-group">
+                <lable>标题</lable>
+                <input type="text" class="input_ext" id="title" placeholder="请填写一个响亮又文雅的标题">
+            </div>
+            <textarea rows="6" style="width:400px;" id="v_content" name="v_content"></textarea>
+            <p >
+                <lable>请选择你问题的类型，方便其他人回答 </lable>
+                <br>
+                {% for tag in tags %}
+                <input type="button" class="btn tag" value="{{ tag.name }}" tag_id="{{ tag.id }}">
+
+            {% endfor %}
+            </p>
+            <button class="btn btn-success submit">发布</button>
+
+        </div>
+{% endblock %}
+
+{% block MyJs %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='kindeditor-4.1.10/kindeditor.js') }}"></script>
+    <script src="{{ url_for('static', filename='kindeditor-4.1.10/kindeditor-all.js') }}"></script>
+    <script src="{{ url_for('static', filename='kindeditor-4.1.10/kindeditor-all-min.js') }}"></script>
+    <script charset="utf-8" src="{{ url_for('static', filename='kindeditor-4.1.10/kindeditor-min.js') }}"></script>
+    <script charset="utf-8" src="{{ url_for('static', filename='kindeditor-4.1.10/lang/zh_CN.js') }}"></script>
+    <script src="{{ url_for('static', filename='blog/js/edit_blog.js') }}"></script>
+{% endblock %}

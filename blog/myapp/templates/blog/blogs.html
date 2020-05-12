@@ -1,0 +1,106 @@
+{% extends 'base/base_main.html' %}
+{% block MyCss %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='blog/css/ask_index.css') }}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="main">
+        {% for blog in pagination.items %}
+            <div class="questions_detail_con">
+                <div class="q_time">
+                    <span>{{ blog.create_time }}来自</span>
+                    <a class="user_name" href="#" target="_blank">{{ blog.author.name }}</a>
+
+
+                </div>
+                <dl>
+                    <h1>
+                        <a href="{{ url_for('blog.blog_api') }}?id={{ blog.id }}" target="_blank">{{ blog.title }}</a>
+                    </h1>
+                    <dd class="content">
+                        {#                    渲染的时候 去掉HTML标签striptags#}
+                        {{ blog.content|striptags }}
+                    </dd>
+                </dl>
+                <div class="tags">
+
+                    {% for tag in blog.tags %}
+                        <a href="#" target="_blank">{{ tag.name }}</a>
+                    {% endfor %}
+
+
+                </div>
+                <a class="answer_num "
+                   title="暂无满意答案"
+                   target="_blank" href="{{ url_for('blog.blog_api') }}?id={{ blog.id }}">
+                    <span>{{ blog.comments|count }}</span>
+                    <p>回答</p>
+                </a>
+
+            </div>
+            <div class="share_bar_con">
+
+
+                <div id="question_751938">
+                    <span class="interval"> </span>
+                    <em class="collection">收藏{{ blog.collects|count }}</em>
+                </div>
+
+                <span class="interval">|</span>
+                <em class="browse">浏览{{ blog.visiteds|count }}</em>
+            </div>
+        {% else %}
+            <h2>暂无博文
+                <a href="/edit_blog">去发表</a>
+            </h2>
+        {% endfor %}
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li>
+
+
+                    {% if pagination.has_prev %}
+                        <a href="{{ url_for('blog.blogs_view') }}?tag_id={{ tag_id }}&page={{ pagination.prev_num }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                        {% else %}
+                        <a href="{{ url_for('blog.blogs_view') }}?tag_id={{ tag_id }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    {% endif %}
+                </li>
+                {% for page in pagination.iter_pages() %}
+                    {% if page %}
+                      {% if page != pagination.page %}
+
+                          <li><a href="{{ url_for('blog.blogs_view') }}?tag_id={{ tag_id }}&page={{ page }}">{{ page }}</a></li>
+                      {% else %}
+                        <li class="active"><a href="#">{{ page }}</a></li>
+                      {% endif %}
+                    {% else %}
+                        <li><a href="#">···</a></li>
+                    {% endif %}
+              {% endfor %}
+                <li>
+                    {% if pagination.has_next %}
+                        <a href="{{ url_for('blog.blogs_view') }}?tag_id={{ tag_id }}&page={{ pagination.next_num }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                        {% else %}
+                        <a href="{{ url_for('blog.blogs_view') }}?tag_id={{ tag_id }}&page={{ pagination.pages }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+{#    {% for foo in g %}#}
+{#        {{ foo.name }}#}
+{#    {% endfor %}#}
+        {{ g.user.name }}
+{% endblock %}

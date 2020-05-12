@@ -1,0 +1,150 @@
+{% extends 'base/base.html' %}
+
+{% block MyCss %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='blog/css/ask_question_detail.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='kindeditor-4.1.10/themes/default/default.css') }}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="main" style="width: 900px;margin-top: 20px;">
+    <div class="persion_section">
+
+    <div class="common_con clearfix">
+        <div class="questions_detail_con">
+            <dl>
+                <dt>
+                    {{ blog.title }}
+                </dt>
+                <dd>
+                    {{ blog.content|safe }}
+                </dd>
+                <!-- liwz modified at 20181009 start -->
+                <dd class="ask_date">
+                    <label class="ask_edit_wrap">
+                        <span class="ask_ask">{{ blog.author.name }}发布于：{{ blog.create_time }}</span>
+                    </label>
+                </dd>
+                <div class="tags">
+
+                    {% for tag in blog.tags %}
+                        <a href="/blogs?tag_id={{ tag.id }}" target="_blank">{{ tag.name }}</a>
+                    {% endfor %}
+
+                </div>
+            </dl>
+        </div>
+
+        <div class="share_bar_con share_bar_con_01" style="margin-left: 20px;">
+            <div class="share bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1432880054358">
+                <a class="bds_more" href="javascript:;"
+                   style="height:30px;line-height:30px; padding-left:0;margin:0px;background:none"
+                   data-cmd="more">分享</a>
+                <script>
+                    window._bd_share_config = {
+                        "common": {
+                            "bdSnsKey": {},
+                            "bdUrl": "//ask.csdn.net/questions/751955",
+                            "bdText": "ImportError: No module named django.db",
+                            "bdMini": "2",
+                            "bdMiniList": false,
+                            "bdPic": "",
+                            "bdStyle": "0",
+                            "bdSize": "16"
+                        },
+                        "share": {}
+                    };
+                    with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = '//csdnimg.cn/static/api/js/share.js?v=89860594.js'];
+                </script>
+            </div>
+
+            <span class="interval">|</span>
+            <a class="collection question_comment" id='collection_751955'
+               href="javascript:;">评论{{ blog.comments|count }}</a>
+
+            <span class="interval">|</span>
+
+            <a class="collection" data-method="post" data-remote="true"
+               href="/collections?item_id=751955&amp;item_type=Question" rel="nofollow" title="收藏">
+                收藏{{ blog.collects|count }}
+            </a>
+
+            <span class="interval">|</span>
+            <a class="collection" href="javascript:;">浏览{{ blog.visiteds|count }}</a>
+
+            <span class="interval interval_no">|</span>
+
+
+        </div>
+
+        <!-- liwz modified at 20181009 end -->
+        <div id="answer_751955_comments">
+            <div class="comment_pointer"><span></span></div>
+
+            <div class="common_con clearfix">
+                <div class="answer_sort_con  q_operate">
+                    <p>{{ blog.comments|count }}个回答</p>
+                    <div class="sort_style operate_style">
+                        <div class="sort_label">
+                            按赞数排序
+                            <i class="icon-caret-down"></i>
+                        </div>
+                        <ul>
+                            <li>
+                                <a href="/questions/751955?sort=id">时间排序</a>
+
+                            </li>
+                            <li>
+                                <a href="/questions/751955?sort=comments_count">评论数排序</a>
+
+                            </li>
+                            <li>
+                                <a href="/questions/751955?sort=votes_count">按赞数排序</a>
+                            </li>
+                            <li class="arrow"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="answer_list">
+                    {% for comment in blog.comments %}
+                        <div class="answer_detail_con" id='answer_805859'>
+                        <div style="margin: 0 20px 10px;font-size: 14px;color: #666;line-height: 24px;word-break: break-all;word-wrap: break-word;">
+                           {{ comment.content|safe }}
+                        </div>
+                        <div class="ask_date">
+                            <label class="ask_edit_wrap">
+                                <span class="ask_ask">{{ comment.user.name }}发布于：{{ comment.comment_time }}</span>
+                            </label>
+                        </div>
+                    {% endfor %}
+
+
+
+
+
+
+                    {#        uiikejfklklm#}
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <p style="margin-top: 10px;">给出你的答案</p>
+        <textarea rows="6" style="width:400px;" id="v_content" name="v_content" placeholder="给你的答案"></textarea>
+        <input blog_id="{{ blog.id }}" id="submit" type="button" value="提交我的回答" class="btn btn-success" style="margin-top: 20px">
+    </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block MyJs %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='kindeditor-4.1.10/kindeditor.js') }}"></script>
+    <script src="{{ url_for('static', filename='kindeditor-4.1.10/kindeditor-all.js') }}"></script>
+    <script src="{{ url_for('static', filename='kindeditor-4.1.10/kindeditor-all-min.js') }}"></script>
+    <script charset="utf-8" src="{{ url_for('static', filename='kindeditor-4.1.10/kindeditor-min.js') }}"></script>
+    <script charset="utf-8" src="{{ url_for('static', filename='kindeditor-4.1.10/lang/zh_CN.js') }}"></script>
+    <script src="{{ url_for('static', filename='blog/js/blog.js') }}"></script>
+{% endblock %}

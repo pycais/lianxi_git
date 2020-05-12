@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="ssh://liuda@sharemsg.cn:22/home/liuda/envs/1807py3.5/bin/python3.5" autoUploadExternalChanges="true">
+    <serverData>
+      <paths name="ssh://liuda@sharemsg.cn:22/home/liuda/envs/1807py3.5/bin/python3.5">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/liuda/1807teach/pythonblog" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ON_EXPLICIT_SAVE" />
+  </component>
+</project>

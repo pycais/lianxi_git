@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% block MyCss %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='kindeditor-4.1.10/themes/default/default.css') }}"/>
+{% endblock %}
+{% block content %}
+    <textarea rows="3" style="width:400px;" id="v_content" name="v_content"></textarea>
+
+{% endblock %}
+
+{% block MyJs %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='kindeditor-4.1.10/kindeditor.js') }}"></script>
+    <script src="{{ url_for('static', filename='kindeditor-4.1.10/kindeditor-all.js') }}"></script>
+    <script src="{{ url_for('static', filename='kindeditor-4.1.10/kindeditor-all-min.js') }}"></script>
+    <script charset="utf-8" src="{{ url_for('static', filename='kindeditor-4.1.10/kindeditor-min.js') }}"></script>
+    <script charset="utf-8" src="{{ url_for('static', filename='kindeditor-4.1.10/lang/zh_CN.js') }}"></script>
+
+    <script>
+        var editor;
+        $(function () {
+            editor = KindEditor.create('textarea[name="v_content"]', {
+                resizeType: 1, width: "100%", height: "200px", afterChange: function () {
+                    this.sync();
+                }, afterBlur: function () {
+                    this.sync();
+                }
+            });
+        });
+    </script>
+
+{% endblock %}

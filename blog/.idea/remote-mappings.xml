@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteMappingsManager">
+    <list>
+      <list>
+        <remote-mappings server-id="python@ssh://liuda@sharemsg.cn:22/home/liuda/envs/1807py3.5/bin/python3.5" />
+      </list>
+    </list>
+  </component>
+</project>

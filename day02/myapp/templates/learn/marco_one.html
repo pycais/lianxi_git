@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% macro fun1(data)%}
+    <ul>
+        {% for i in data %}
+            <li>{{ i }}</li>
+            从1开始数数：{{ loop.index }}
+            从0开始数数：{{ loop.index0 }}
+            反向数到0：{{ loop.revindex0 }}
+            反向数到1：{{ loop.revindex }}
+            {% else %}
+            <h1>暂无数据</h1>
+        {% endfor %}
+
+    </ul>
+{% endmacro %}
+{#调用#}
+{#    {{ fun1([1,2,4,3]) }}#}
+{#    {{ fun1([1,2,4,3]) }}#}
+    {{ fun1([1,2,4,3]) }}
+    {{ fun1([]) }}
+{#从其他文件导入#}
+{% from 'learn/util.html' import fun2 %}
+{{ fun2({'title': "快吃饭了", 'desc': "吃什么", 'btn_hint':"随便"}) }}
+{{ fun2({'title': "快吃饭了", 'desc': "吃什么", 'btn_hint':"随便"}) }}
+{{ fun2({'title': "快吃饭了", 'desc': "吃什么", 'btn_hint':"随便"}) }}
+</body>
+</html>

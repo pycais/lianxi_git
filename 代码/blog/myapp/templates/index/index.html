@@ -1,0 +1,27 @@
+{% extends 'base/base_main.html' %}
+{% block MyCss %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <div class="contain">
+        <div class="jumbotron">
+            <div class="contain">
+                <h1>{{ web_msg.title }}</h1>
+                <p>{{ web_msg.desc }}</p>
+                <p><a class="btn btn-primary btn-lg" href="{{ web_msg.btn_href }}" role="button">{{ web_msg.btn_title }}>></a></p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            {% for notice in notices %}
+                <div class="col-md-4">
+                    <h2>{{ notice.title }}</h2>
+                    <p>{{ notice.content }} </p>
+                </div>
+            {% endfor %}
+
+
+        </div>
+
+{% endblock %}
