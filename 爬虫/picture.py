@@ -42,7 +42,7 @@ class PictureBaike(object):
     def download_filename(self, title):
         if not os.path.exists(f'{self.tag}'):
             os.mkdir(f'{self.tag}')
-        return os.path.join(self.tag, os.path.basename(title + 'jpg'))
+        return os.path.join(self.tag, os.path.basename(title + '.jpg'))
 
     def dowmload_pic(self, url, filename):
         with open(filename, 'wb') as f:
