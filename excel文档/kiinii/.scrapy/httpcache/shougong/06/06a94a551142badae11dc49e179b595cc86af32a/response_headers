@@ -1,0 +1,6 @@
+Server: nginx/1.4.6 (Ubuntu)
+Date: Sat, 18 Jul 2020 06:51:49 GMT
+Content-Type: text/html; charset=utf-8
+Vary: Cookie,Accept-Encoding
+Set-Cookie: csrftoken=372ad2c28fa272b42ee5777821f3655b; expires=Sat, 17-Jul-2021 06:51:49 GMT; Max-Age=31449600; Path=/
+Content-Encoding: gzip
