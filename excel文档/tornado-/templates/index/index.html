@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <style>
+        {#.ui.grid {#}
+        {#    margin-top: 5rem;#}
+        {#    margin-bottom: -1rem;#}
+        {#    margin-left: 10rem;#}
+        {#    margin-right: 0rem;#}
+
+        .pane{
+            margin-top: 5rem;
+            margin-bottom: -1rem;
+            margin-left: 10rem;
+            margin-right: 0rem;
+        }
+    </style>
+</head>
+<body>
+<div class="ui left demo vertical inverted sidebar labeled icon menu visible sidebar">
+    <a class="item" href="/index">
+        <i class="chart line icon"></i>
+        博文统计
+    </a>
+    <a class="item" href="/user-count">
+        <i class="user md icon"></i>
+        用户
+    </a>
+    <a class="item" href="/top-blog">
+        <i class="sort numeric down icon"></i>
+        博文TOP10
+    </a>
+    <a class="item" href="/visited-detail">
+        <i class="map icon"></i>
+        浏览概况
+    </a>
+</div>
+<div class="pane">
+    {% if template_id == 1 %}
+        {% include 'blog_detail.html' %}
+    {% elif template_id == 2 %}
+        {% include '../user/user_count.html' %}
+    {% elif template_id == 3 %}
+        {% include '../user/user_count.html' %}
+    {% elif template_id == 4 %}
+        {% include '../user/user_count.html' %}
+    {% end %}
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<script src="http://echarts.baidu.com/dist/echarts.min.js"></script>
+
+{% if template_id == 1 %}
+        <script type="text/javascript" src="{{ static_url('index/js/blog_detail.js') }} "></script>
+    {% elif template_id == 2 %}
+        {% include '../user/user_count.html' %}
+    {% elif template_id == 3 %}
+        {% include '../user/user_count.html' %}
+    {% elif template_id == 4 %}
+        {% include '../user/user_count.html' %}
+    {% end %}
+</html>

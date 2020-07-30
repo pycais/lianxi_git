@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>达达聊天室</title>
+</head>
+<body>
+<h3>满屋都是英雄汉，谁是君来谁是臣</h3>
+
+<input type="text" placeholder="写写你想对老大说的话" id="msg">
+<input type="button" value="发送" onclick="submit()">
+<ul id="msg-contain">
+
+</ul>
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    var ws = new WebSocket("ws://sharemsg.cn:12341/chat");
+    function submit() {
+        var msg = $("#msg").val();
+        ws.send(msg);
+        $("#msg").val("");
+    }
+    ws.onmessage = function (ev) {
+        console.log(ev.data);
+        {#生成li#}
+        {#var n = new Audio("http://sharemsg.cn:12348/shangmi/api/v1/test?text="+ev.data);#}
+        {#n.play()#}
+        var new_li = $("<li></li>");
+        new_li.html(ev.data);
+        {#追加想到ul#}
+        $("#msg-contain").append(new_li);
+    }
+</script>
+</html>
